@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 
 import io.keepcoding.diduorder.R;
 import io.keepcoding.diduorder.fragment.PlateListFragment;
@@ -53,5 +54,18 @@ public class PlatesActivity extends AppCompatActivity implements PlateListFragme
     public void onPlateSelected(Plate plate, int position) {
 
         Log.v(TAG, "Selected plate in position " + position);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        boolean superValue = super.onOptionsItemSelected(item);
+
+        if (item.getItemId() == android.R.id.home) {
+            // Back arrow tapped -> Finalize activity
+            finish();
+            return true;
+        }
+
+        return superValue;
     }
 }
