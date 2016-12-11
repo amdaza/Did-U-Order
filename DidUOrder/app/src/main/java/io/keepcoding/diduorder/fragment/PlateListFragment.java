@@ -17,6 +17,23 @@ import io.keepcoding.diduorder.model.Plates;
 public class PlateListFragment extends Fragment {
 
     private OnPlateSelectedListener mListener;
+    private static final String ARG_TABLE_INDEX = "ARG_TABLE_INDEX";
+    private static Bundle arguments;
+
+    public static PlateListFragment newInstance(int tableIndex) {
+        arguments = new Bundle();
+        arguments.putInt(ARG_TABLE_INDEX, tableIndex);
+
+        PlateListFragment plateListFragment = new PlateListFragment();
+        plateListFragment.setArguments(arguments);
+
+        return plateListFragment;
+    }
+
+    public void changeTablePosition(int position){
+        arguments.putInt(ARG_TABLE_INDEX, position);
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -25,7 +42,7 @@ public class PlateListFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_plate_list, container, false);
 
         // Access to ListView
-        ListView listView = (ListView) root.findViewById(android.R.id.list);
+        ListView listView = (ListView) root.findViewById(R.id.list_view_plate);
 
         // Create model
         Plates plates = new Plates();

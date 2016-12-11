@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public class Tables {
-    private ArrayList mTables;
+    private ArrayList<Table> mTables;
 
     public Tables(String baseName, int quantity){
         mTables = new ArrayList<>(quantity);
@@ -19,5 +19,9 @@ public class Tables {
 
     public ArrayList getTables() {
         return mTables;
+    }
+
+    public Table getTable(int position){
+        return mTables.get(position);
     }
 }
