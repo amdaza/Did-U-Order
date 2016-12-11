@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DidUOrder</string>
     <string name="table">mesa</string>
+    <string name="todays_menu">Menú del día</string>
 </resources>

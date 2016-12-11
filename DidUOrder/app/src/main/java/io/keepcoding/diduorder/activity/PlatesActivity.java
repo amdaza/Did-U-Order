@@ -28,6 +28,7 @@ public class PlatesActivity extends AppCompatActivity implements PlateListFragme
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.todays_menu);
         }
 
         // Get fragment manager
