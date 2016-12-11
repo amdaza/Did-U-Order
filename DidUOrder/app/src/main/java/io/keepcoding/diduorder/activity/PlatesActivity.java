@@ -1,16 +1,15 @@
 package io.keepcoding.diduorder.activity;
 
 import android.app.FragmentManager;
-import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import io.keepcoding.diduorder.R;
 import io.keepcoding.diduorder.fragment.PlateListFragment;
-import io.keepcoding.diduorder.fragment.TableListFragment;
 import io.keepcoding.diduorder.model.Plate;
-import io.keepcoding.diduorder.model.Table;
 
 public class PlatesActivity extends AppCompatActivity implements PlateListFragment.OnPlateSelectedListener {
 
@@ -23,15 +22,23 @@ public class PlatesActivity extends AppCompatActivity implements PlateListFragme
 
         setContentView(R.layout.activity_plates);
 
+        // Custom toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
         // Get fragment manager
         FragmentManager fm = getFragmentManager();
 
         // Check plate list fragment
         if (fm.findFragmentById(R.id.fragment_plate_list) == null) {
-            // Le paso la ciudad que quiere el usuario cargar
+            // Pass table index
             int tableIndex = getIntent().getIntExtra(EXTRA_TABLE_INDEX, 0);
 
-            // Creo el fragment pasándole los argumentos
+            // Create fragmsent with arguments
             PlateListFragment plateListFragment = PlateListFragment.newInstance(tableIndex);
 
             fm.beginTransaction()
