@@ -12,6 +12,8 @@ import android.widget.ListView;
 import io.keepcoding.diduorder.R;
 import io.keepcoding.diduorder.model.Plate;
 import io.keepcoding.diduorder.model.Plates;
+import io.keepcoding.diduorder.model.Table;
+import io.keepcoding.diduorder.model.Tables;
 
 /**
  * Created by Alicia on 11/12/2016.
@@ -26,17 +28,18 @@ public class TableListFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_table_list, container, false);
 
-                // Access to ListView
+        // Access to ListView
         ListView listView = (ListView) root.findViewById(android.R.id.list);
 
         // Create model
-        Plates plates = new Plates();
+        String tableName = getResources().getString(R.string.table);
+        Tables tables = new Tables(tableName, 10);
 
         // Create adapter to link model with list
-        ArrayAdapter<Plate> adapter = new ArrayAdapter<Plate>(
+        ArrayAdapter<Table> adapter = new ArrayAdapter<Table>(
                 getActivity(),
                 android.R.layout.simple_list_item_1,
-                plates.getPlates()
+                tables.getTables()
         );
 
         // Assign adapter to list
