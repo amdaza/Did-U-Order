@@ -59,18 +59,18 @@ public class PlatesActivity extends AppCompatActivity implements PlateListFragme
 
         // Check if fragment is already in interface
         FragmentManager fragmentManager = getFragmentManager();
-        PlateFragment plateListFragment =
+        PlateFragment plateFragment =
                 (PlateFragment) fragmentManager.findFragmentById(R.id.fragment_plate);
 
-        if (plateListFragment != null) {
+        if (plateFragment != null) {
             // Already created
             Log.v(TAG, "Plate already created in " + position);
-            plateListFragment.changePlate(plate);
+            plateFragment.changePlate(plate);
         } else {
             Log.v(TAG, "New intent plate created in " + position);
             Intent intent = new Intent(this, PlateActivity.class);
 
-            intent.putExtra(PlatesActivity.EXTRA_TABLE_INDEX, position);
+            intent.putExtra(PlateActivity.EXTRA_PLATE, plate);
 
             startActivity(intent);
         }

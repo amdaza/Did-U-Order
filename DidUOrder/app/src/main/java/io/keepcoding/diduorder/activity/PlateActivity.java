@@ -8,12 +8,15 @@ import android.support.v7.widget.Toolbar;
 
 import io.keepcoding.diduorder.R;
 import io.keepcoding.diduorder.fragment.PlateFragment;
+import io.keepcoding.diduorder.model.Plate;
 
 /**
  * Created by Alicia on 11/12/2016.
  */
 
 public class PlateActivity extends AppCompatActivity {
+
+    public static final String EXTRA_PLATE = "EXTRA_PLATE";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,14 +30,15 @@ public class PlateActivity extends AppCompatActivity {
         // Get fragment
         FragmentManager fragmentManager = getFragmentManager();
 
-        // Check if there's place for Plate
-        if (findViewById(R.id.fragment_plate) != null) {
-            // Existe el hueco, y habiendo hueco metemos el fragment del CityPager
-            if (fragmentManager.findFragmentById(R.id.fragment_plate) == null) {
-                fragmentManager.beginTransaction()
-                        .add(R.id.fragment_plate, new PlateFragment())
-                        .commit();
-            }
+        if (fragmentManager.findFragmentById(R.id.fragment_plate) == null) {
+
+            Plate plate = (Plate) getIntent().getSerializableExtra(EXTRA_PLATE);
+
+            PlateFragment plateFragment = PlateFragment.newInstance(plate);
+
+            fragmentManager.beginTransaction()
+                    .add(R.id.fragment_plate, plateFragment)
+                    .commit();
         }
     }
 }
