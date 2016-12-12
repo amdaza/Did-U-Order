@@ -1,6 +1,7 @@
 package io.keepcoding.diduorder.activity;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import io.keepcoding.diduorder.R;
+import io.keepcoding.diduorder.fragment.PlateFragment;
 import io.keepcoding.diduorder.fragment.PlateListFragment;
 import io.keepcoding.diduorder.model.Plate;
 
@@ -54,6 +56,24 @@ public class PlatesActivity extends AppCompatActivity implements PlateListFragme
     public void onPlateSelected(Plate plate, int position) {
 
         Log.v(TAG, "Selected plate in position " + position);
+
+        // Check if fragment is already in interface
+        FragmentManager fragmentManager = getFragmentManager();
+        PlateFragment plateListFragment =
+                (PlateFragment) fragmentManager.findFragmentById(R.id.fragment_plate);
+
+        if (plateListFragment != null) {
+            // Already created
+            Log.v(TAG, "Plate already created in " + position);
+            plateListFragment.changePlate(plate);
+        } else {
+            Log.v(TAG, "New intent plate created in " + position);
+            Intent intent = new Intent(this, PlateActivity.class);
+
+            intent.putExtra(PlatesActivity.EXTRA_TABLE_INDEX, position);
+
+            startActivity(intent);
+        }
     }
 
     @Override

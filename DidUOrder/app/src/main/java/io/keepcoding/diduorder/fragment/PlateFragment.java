@@ -63,13 +63,22 @@ public class PlateFragment extends Fragment{
         mIngredientsTextView = (TextView) root.findViewById(R.id.ingredients);
         mPlateImageView = (ImageView) root.findViewById(R.id.plate_image);
 
+        updatePlateDisplay();
+
+        return root;
+    }
+
+    public void changePlate(Plate plate) {
+        mPlate = plate;
+        updatePlateDisplay();
+    }
+
+    private void updatePlateDisplay(){
         mPlateTextView.setText(mPlate.getName());
         mIngredientsTextView.setText(mPlate.getIngredientListString());
 
         String icon = mPlate.getImageResourceName();
         int imageResource = getResources().getIdentifier(icon, "drawable", mPlateImageView.getContext().getPackageName());
         mPlateImageView.setImageResource(imageResource);
-
-        return root;
     }
 }

@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ViewSwitcher;
@@ -34,7 +35,7 @@ public class PlateListFragment extends Fragment {
 
     public static final String TAG = PlateListFragment.class.getName();
 
-    private OnPlateSelectedListener mListener;
+    private OnPlateSelectedListener mOnPlateSelectedListener;
     private static final String ARG_TABLE_INDEX = "ARG_TABLE_INDEX";
     private static final int LOADING_VIEW_INDEX = 0;
     private static final int PLATE_VIEW_INDEX = 1;
@@ -129,6 +130,16 @@ public class PlateListFragment extends Fragment {
 
         // Assign adapter to list
         mListView.setAdapter(adapter);
+        // Assign listener to list
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                // Notify listener -> row selected
+                if (mOnPlateSelectedListener != null) {
+                    mOnPlateSelectedListener.onPlateSelected(mPlatesList.getPlate(position), position);
+                }
+            }
+        });
 
         return root;
     }
@@ -137,7 +148,7 @@ public class PlateListFragment extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnPlateSelectedListener) {
-            mListener = (OnPlateSelectedListener) context;
+            mOnPlateSelectedListener = (OnPlateSelectedListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -147,7 +158,7 @@ public class PlateListFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        mListener = null;
+        mOnPlateSelectedListener = null;
     }
 
     public interface OnPlateSelectedListener {

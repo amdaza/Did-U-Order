@@ -65,7 +65,7 @@ public class TableListFragment extends Fragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(getView(), "FAB pulsado...", Snackbar.LENGTH_INDEFINITE).show();
+                Snackbar.make(getView(), "Añadir mesa no implementado =(", Snackbar.LENGTH_SHORT).show();
             }
         });
 
