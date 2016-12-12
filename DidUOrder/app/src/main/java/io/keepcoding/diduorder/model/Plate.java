@@ -59,4 +59,14 @@ public class Plate implements Serializable{
     public String toString() {
         return getName();
     }
+
+    public String getIngredientListString() {
+        String result = "";
+
+        for (String ingredient: mIngredients) {
+            result = result.concat(ingredient + "\n");
+        }
+
+        return result;
+    }
 }

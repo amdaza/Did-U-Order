@@ -11,9 +11,6 @@ public class Plates {
 
     public Plates() {
         mPlates = new LinkedList<>();
-        mPlates.add(new Plate("Tortilla de patatas"));
-        mPlates.add(new Plate("Brownie con helado"));
-        mPlates.add(new Plate("Pastel de patata"));
     }
 
     public LinkedList<Plate> getPlates() {
@@ -26,6 +23,10 @@ public class Plates {
 
     public Plate getPlate(int position) {
         return mPlates.get(position);
+    }
+
+    public void addPlate(Plate plate){
+        mPlates.add(plate);
     }
 
     public int getCount() {

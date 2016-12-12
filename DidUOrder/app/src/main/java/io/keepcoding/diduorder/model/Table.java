@@ -1,5 +1,6 @@
 package io.keepcoding.diduorder.model;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -8,7 +9,7 @@ import java.util.LinkedHashMap;
  * Created by Alicia on 11/12/2016.
  */
 
-public class Table {
+public class Table implements Serializable{
     private String mBaseName;
     private int mPosition;
     private HashMap<Plate, Integer> mPlates;

@@ -2,4 +2,6 @@
     <string name="app_name">DidUOrder</string>
     <string name="table">mesa</string>
     <string name="todays_menu">Menú del día</string>
+    <string name="error">Error</string>
+    <string name="plates_download_error_message">No se pudo descargar la información del menú</string>
 </resources>
